@@ -23,6 +23,19 @@ void led_1_task(void *p) {
   }
 }
 
+void led_2_task(void *p) {
+  gpio_init(LED_PIN_G);
+  gpio_set_dir(LED_PIN_G, GPIO_OUT);
+
+  int delay = 500;
+  while (true) {
+    gpio_put(LED_PIN_G, 1);
+    vTaskDelay(pdMS_TO_TICKS(delay));
+    gpio_put(LED_PIN_G, 0);
+    vTaskDelay(pdMS_TO_TICKS(delay));
+  }
+}
+
 int main() {
   stdio_init_all();
   printf("Start RTOS \n");
